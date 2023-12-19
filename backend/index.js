@@ -9,7 +9,15 @@ import UserRouter from "./routes/userRoutes.js";
 import transactionRouter from "./routes/transactionRoutes.js";
 
 const app = express();
-app.use(cors());
+const options = [
+  cors({
+    origin: "*",
+    methods: "*",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+];
+app.use(options);
 app.use(express.json());
 
 app.use("/api/users", UserRouter);
