@@ -9,8 +9,9 @@ import UserRouter from "./routes/userRoutes.js";
 import transactionRouter from "./routes/transactionRoutes.js";
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+
 app.use("/api/users", UserRouter);
 app.use("/api/transactions", transactionRouter);
 app.use("/api/requests", requestRouter);
