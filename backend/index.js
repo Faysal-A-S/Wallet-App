@@ -15,6 +15,9 @@ app.use(cors());
 app.use("/api/users", UserRouter);
 app.use("/api/transactions", transactionRouter);
 app.use("/api/requests", requestRouter);
+app.get("/", (req, res) => {
+  res.send("Connected to wallet App backend");
+});
 const PORT = 9000;
 Connection(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 
