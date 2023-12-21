@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../features/User/userApi";
 import { RxCrossCircled } from "react-icons/rx";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -7,7 +7,7 @@ import { ImCross } from "react-icons/im";
 const Login = () => {
   const [Email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-
+  const navigate = useNavigate();
   const [login, { isLoading, data, error }] = useLoginMutation();
   const [alert, setAlert] = useState(false);
   const [alertmsg, setalertmsg] = useState(null);
@@ -39,9 +39,11 @@ const Login = () => {
 
       localStorage.setItem("user", JSON.stringify({ token: data.token }));
 
-      window.location.href = "";
+      setTimeout(() => {
+        navigate(0);
+      }, 3000);
     }
-  }, [error, data]);
+  }, [error, data, navigate]);
   return (
     <div className="h-screen w-screen flex items-center flex-col">
       {alert && (
